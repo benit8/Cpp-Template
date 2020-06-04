@@ -40,7 +40,7 @@ function run()
 function run_tests()
 {
 	if ! is_built; then build; fi
-	"./${build_dir}/${project_bin}Tests" $@
+	"./${build_dir}/tests/${project_bin}Tests" $@
 }
 
 ############################################################
