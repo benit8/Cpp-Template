@@ -4,7 +4,10 @@
 ##
 
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
-cmake_policy(SET CMP0076 NEW)
+
+if (${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.13")
+	cmake_policy(SET CMP0076 NEW)
+endif()
 
 project(
 	"Project"
