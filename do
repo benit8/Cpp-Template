@@ -13,7 +13,7 @@ has_build_dir() {
 }
 
 is_built() {
-	has_build_dir && [ -f "$build_dir/$project_bin" ]
+	has_build_dir && [ -x "$build_dir/$project_bin" ]
 }
 
 ############################################################
