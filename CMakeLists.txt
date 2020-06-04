@@ -1,0 +1,54 @@
+##
+## Project, 2020
+## CMakeLists.txt
+##
+
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
+cmake_policy(SET CMP0076 NEW)
+
+project(
+	"Project"
+	VERSION 0.1.0
+	LANGUAGES CXX
+)
+
+add_executable(${PROJECT_NAME})
+add_subdirectory(extern)
+
+target_compile_features(${PROJECT_NAME}
+PUBLIC
+	cxx_std_20
+)
+
+target_compile_options(${PROJECT_NAME}
+PUBLIC
+	-W -Wall -Wextra
+PRIVATE
+	-fPIC
+	-g3
+)
+
+target_include_directories(${PROJECT_NAME}
+PUBLIC
+	sources
+PRIVATE
+	extern
+)
+
+target_sources(${PROJECT_NAME}
+PUBLIC
+	sources/Utils/OptionParser.hpp
+
+PRIVATE
+	sources/Main.cpp
+	sources/Utils/OptionParser.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}
+PUBLIC
+	# pthread
+	# ...
+)
+
+## Tests
+add_subdirectory(tests)
