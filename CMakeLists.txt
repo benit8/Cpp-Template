@@ -45,7 +45,7 @@ PUBLIC
 	sources/Common/OptionParser.hpp
 
 PRIVATE
-	sources/Main.cpp
+	sources/main.cpp
 	sources/Common/GenericLexer.cpp
 	sources/Common/OptionParser.cpp
 )
