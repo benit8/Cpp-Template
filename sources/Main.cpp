@@ -1,11 +1,12 @@
 /*
-** PROJECT, 2020
+** Project, 2020
+** Benoît Lormeau <blormeau@outlook.com>
 ** Main entry point
 */
 
-#include "Utils/OptionParser.hpp"
+#include "Common/OptionParser.hpp"
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
 	OptionParser opt;
 	if (!opt.parse(argc, argv))

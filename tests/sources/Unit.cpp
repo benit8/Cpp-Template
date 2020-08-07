@@ -1,5 +1,6 @@
 /*
 ** Project Tests, 2020
+** Benoît Lormeau <blormeau@outlook.com>
 ** Unit
 */
 

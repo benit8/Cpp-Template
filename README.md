@@ -4,6 +4,7 @@ C++ template project
 Includes:
 - CMake lists
 - Command-line option parser
+- General purpose lexing base class
 - Unit tests
 
 ## Build

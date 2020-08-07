@@ -1,6 +1,7 @@
 ##
 ## Project, 2020
-## CMakeLists.txt
+## Benoît Lormeau <blormeau@outlook.com>
+## Main CMakeLists
 ##
 
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
@@ -40,18 +41,19 @@ PRIVATE
 
 target_sources(${PROJECT_NAME}
 PUBLIC
-	sources/Utils/OptionParser.hpp
+	sources/Common/GenericLexer.hpp
+	sources/Common/OptionParser.hpp
 
 PRIVATE
 	sources/Main.cpp
-	sources/Utils/OptionParser.cpp
+	sources/Common/GenericLexer.cpp
+	sources/Common/OptionParser.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
 PUBLIC
-	# pthread
 	# ...
 )
 
-## Tests
+# Tests
 add_subdirectory(tests)

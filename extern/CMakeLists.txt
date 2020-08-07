@@ -1,5 +1,6 @@
 ##
 ## PROJECT, 2020
+## Benoît Lormeau <blormeau@outlook.com>
 ## External dependencies
 ##
 
