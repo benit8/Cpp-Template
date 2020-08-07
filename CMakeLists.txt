@@ -41,12 +41,16 @@ PRIVATE
 
 target_sources(${PROJECT_NAME}
 PUBLIC
+	sources/Common/Assertions.hpp
 	sources/Common/GenericLexer.hpp
+	sources/Common/Logger.hpp
 	sources/Common/OptionParser.hpp
+	sources/Common/TTYEscapeSequences.hpp
 
 PRIVATE
 	sources/main.cpp
 	sources/Common/GenericLexer.cpp
+	sources/Common/Logger.cpp
 	sources/Common/OptionParser.cpp
 )
 
