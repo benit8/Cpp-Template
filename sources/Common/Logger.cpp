@@ -6,42 +6,41 @@
 
 #include "Common/Assertions.hpp"
 #include "Common/Logger.hpp"
+#include "fmt/chrono.h"
+#include "fmt/color.h"
+#include "fmt/format.h"
 #include <sys/time.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 
 Logger::Level Logger::s_level = Logger::Level::Trace;
-bool Logger::s_use_colors = true;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-std::ostream& Logger::log(Logger::Level level)
+void Logger::log(Level level, fmt::string_view format, fmt::format_args args)
 {
-	static std::ostream nullstream(nullptr);
-	if (level < s_level) {
-		return nullstream;
-	}
+	static const struct {
+		const char* name;
+		fmt::text_style style;
+	} levels[] = {
+		{ "TRACE",     fmt::emphasis::faint },
+		{ "DEBUG",     fmt::fg(fmt::terminal_color::magenta) },
+		{ "INFO",      fmt::fg(fmt::terminal_color::blue) },
+		{ "NOTICE",    fmt::fg(fmt::terminal_color::green) },
+		{ "WARNING",   fmt::fg(fmt::terminal_color::yellow) },
+		{ "ERROR",     fmt::fg(fmt::terminal_color::red) },
+		{ "CRITICAL",  fmt::emphasis::bold | fmt::fg(fmt::terminal_color::red) },
+		{ "ALERT",     fmt::emphasis::bold | fmt::emphasis::underline | fmt::fg(fmt::terminal_color::red) },
+		{ "EMERGENCY", fmt::emphasis::bold | fmt::emphasis::underline | fmt::fg(fmt::terminal_color::red) },
+	};
 
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	int millisec = tv.tv_usec / 1000.0;
+	if (level < s_level)
+		return;
 
-	struct tm* lt = localtime(&tv.tv_sec);
-	char tbuf[16] = {0};
-	int n = strftime(tbuf, sizeof(tbuf), "%H:%M:%S", lt);
-	snprintf(tbuf + n, sizeof(tbuf) - n - 1, ".%03d", millisec);
-
-	return std::cout << TTY_FAINT_ON << tbuf << TTY_FAINT_OFF << " " << level_to_string(level) << " " << std::dec;
-}
-
-const char* Logger::level_to_string(Logger::Level level)
-{
-	switch (level) {
-		case Logger::Level::Trace: return s_use_colors ? TTY_FAINT_ON "TRACE" TTY_FAINT_OFF : "TRACE";
-		case Logger::Level::Debug: return s_use_colors ? TTY_FG_MAGENTA "DEBUG" TTY_FG_DEFAULT : "DEBUG";
-		case Logger::Level::Info:  return s_use_colors ? TTY_FG_GREEN "INFO " TTY_FG_DEFAULT : "INFO ";
-		case Logger::Level::Warn:  return s_use_colors ? TTY_FG_YELLOW "WARN " TTY_FG_DEFAULT : "WARN ";
-		case Logger::Level::Error: return s_use_colors ? TTY_FG_RED "ERROR" TTY_FG_DEFAULT : "ERROR";
-	}
-	ASSERT_NOT_REACHED();
+	std::time_t t = std::time(nullptr);
+	fmt::print("{} {:9} {}\n",
+		fmt::format(fmt::emphasis::faint, "{:%Y-%m-%d %H:%M:%S}", fmt::localtime(t)),
+		fmt::format(levels[level].style, "{}", levels[level].name),
+		fmt::vformat(format, args)
+	);
 }

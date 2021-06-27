@@ -9,7 +9,7 @@
 
 int main(int argc, char** argv)
 {
-	Logger::trace(TTY_BLINK("Program started!"));
+	Logger::trace("Program started!");
 
 	OptionParser opt;
 	if (!opt.parse(argc, argv))

@@ -4,5 +4,4 @@
 ## External dependencies
 ##
 
-# Add each subdirectory below
-# add_subdirectory()
+add_subdirectory(fmt)
