@@ -1,5 +1,5 @@
 ##
-## Project, 2020
+## {{ PROJECT_NAME }}, {{ YEAR }}
 ## Benoît Lormeau <blormeau@outlook.com>
 ## Main CMakeLists
 ##
@@ -11,7 +11,7 @@ if (${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.13")
 endif()
 
 project(
-	"Project"
+	"{{ PROJECT_NAME }}"
 	VERSION 0.1.0
 	LANGUAGES CXX
 )

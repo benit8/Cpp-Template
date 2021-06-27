@@ -1,5 +1,5 @@
 /*
-** Project, 2020
+** {{ PROJECT_NAME }}, {{ YEAR }}
 ** Benoît Lormeau <blormeau@outlook.com>
 ** Terminal escape sequences, mostly colors
 */

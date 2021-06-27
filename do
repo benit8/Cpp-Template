@@ -30,6 +30,29 @@ is_built() {
 
 ############################################################
 
+function untemplatize()
+{
+	files=(
+		"./CMakeLists.txt"
+		"extern/CMakeLists.txt"
+		"tests/CMakeLists.txt"
+		$(find sources/ tests/ -type f -iname '*pp')
+	)
+
+	replace_var() {
+		sed -r 's|\{\{\s*'$1'\s*\}\}|'$2'|g' -i ${files[@]}
+	}
+
+	replace_var 'YEAR' $(date +%Y)
+	replace_var 'PROJECT_NAME' "$project_name"
+}
+
+function init()
+{
+	untemplatize && echo "Untemplatized the project"
+	git submodule update --init --recursive
+}
+
 function build()
 {
 	if ! has_build_dir; then mkdir "$build_dir"; fi
@@ -82,9 +105,10 @@ function clean()
 case "$1" in
 	""   )                  ;&
 	build) build            ;;
+	clean) clean            ;;
+	init ) init             ;;
 	run  ) run ${@:2}       ;;
 	test ) run_tests ${@:2} ;;
-	clean) clean            ;;
 	*)
 		echo "No operation '$1' found"
 		exit 1

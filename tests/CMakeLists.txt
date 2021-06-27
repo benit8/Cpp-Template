@@ -1,5 +1,5 @@
 ##
-## Project Tests, 2020
+## {{ PROJECT_NAME }} Tests, {{ YEAR }}
 ## Benoît Lormeau <blormeau@outlook.com>
 ## CMakeLists.txt
 ##

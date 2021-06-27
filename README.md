@@ -7,27 +7,32 @@ Includes:
 - General purpose lexing base class
 - Unit tests
 
+## Untemplatize the project headers
+Edit the `do` script at the root of the project and set the `project_name` variable. Then run
+```sh
+./do init
+```
+This will replace the project name and set the year in all file headers.
+
 ## Build
 ```sh
-$ ./do
+./do
 ```
 or
 ```sh
-$ ./do build
+./do build
 ```
 
 ## Run
 ```sh
-$ ./do run
+./do run
 ```
-
 Arguments after `run` will get passed to the binary.
 
 ## Tests
 This project includes unit tests, done with [Criterion](https://github.com/Snaipe/Criterion).
-
 ```sh
-$ ./do test
+./do test
 ```
 
 ## Authors
