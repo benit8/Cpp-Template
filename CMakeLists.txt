@@ -55,8 +55,9 @@ PRIVATE
 )
 
 target_link_libraries(${PROJECT_NAME}
-PUBLIC
+PRIVATE
 	fmt-header-only
+	nlohmann_json::nlohmann_json
 	# ...
 )
 
