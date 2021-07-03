@@ -1,11 +1,11 @@
 /*
 ** {{ PROJECT_NAME }}, {{ YEAR }}
 ** Benoît Lormeau <blormeau@outlook.com>
-** Common / Logger.cpp
+** Common / Log.cpp
 */
 
 #include "Common/Assertions.hpp"
-#include "Common/Logger.hpp"
+#include "Common/Log.hpp"
 #include "fmt/chrono.h"
 #include "fmt/color.h"
 #include "fmt/format.h"
@@ -13,11 +13,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Logger::Level Logger::s_level = Logger::Level::Trace;
+Log::Level Log::s_level = Log::Level::Trace;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void Logger::log(Level level, fmt::string_view format, fmt::format_args args)
+void Log::log(Level level, fmt::string_view format, fmt::format_args args)
 {
 	static const struct {
 		const char* name;
@@ -31,14 +31,14 @@ void Logger::log(Level level, fmt::string_view format, fmt::format_args args)
 		{ "ERROR",     fmt::fg(fmt::terminal_color::red) },
 		{ "CRITICAL",  fmt::emphasis::bold | fmt::fg(fmt::terminal_color::red) },
 		{ "ALERT",     fmt::emphasis::bold | fmt::emphasis::underline | fmt::fg(fmt::terminal_color::red) },
-		{ "EMERGENCY", fmt::emphasis::bold | fmt::emphasis::underline | fmt::fg(fmt::terminal_color::red) },
+		{ "EMERGENCY", fmt::emphasis::bold | fmt::emphasis::underline | fmt::emphasis::blink | fmt::fg(fmt::terminal_color::red) },
 	};
 
 	if (level < s_level)
 		return;
 
 	std::time_t t = std::time(nullptr);
-	fmt::print("{} {:9} {}\n",
+	fmt::print("{} {} {}\n",
 		fmt::format(fmt::emphasis::faint, "{:%Y-%m-%d %H:%M:%S}", fmt::localtime(t)),
 		fmt::format(levels[level].style, "{}", levels[level].name),
 		fmt::vformat(format, args)

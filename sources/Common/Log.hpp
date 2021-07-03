@@ -1,7 +1,7 @@
 /*
 ** {{ PROJECT_NAME }}, {{ YEAR }}
 ** Benoît Lormeau <blormeau@outlook.com>
-** Common / Logger.hpp
+** Common / Log.hpp
 */
 
 #pragma once
@@ -13,7 +13,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class Logger
+class Log
 {
 public:
 	enum Level
@@ -27,8 +27,6 @@ public:
 		Critical,
 		Alert,
 		Emergency,
-
-		LEVEL_COUNT,
 	};
 
 public:

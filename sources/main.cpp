@@ -4,12 +4,12 @@
 ** Main entry point
 */
 
-#include "Common/Logger.hpp"
+#include "Common/Log.hpp"
 #include "Common/OptionParser.hpp"
 
 int main(int argc, char** argv)
 {
-	Logger::trace("Program started!");
+	Log::trace("Program started!");
 
 	OptionParser opt;
 	if (!opt.parse(argc, argv))
