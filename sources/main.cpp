@@ -7,6 +7,8 @@
 #include "Common/Log.hpp"
 #include "Common/OptionParser.hpp"
 
+// -----------------------------------------------------------------------------
+
 int main(int argc, char** argv)
 {
 	Log::trace("Program started!");

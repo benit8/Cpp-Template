@@ -6,23 +6,23 @@
 
 #pragma once
 
-////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
 
 #include "Common/TTYEscapeSequences.hpp"
 #include <cstdio>
 
-////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
 
 #define ASSERT(x) do { \
 	if (!(x)) { \
-		fprintf(stderr, TTY_BRIGHT_RED("Assertion failed") ": " TTY_YELLOW(#x) " (" TTY_CYAN("%s") ":" TTY_BLUE("%d") ")\n", __FILE__, __LINE__); \
+		fprintf(stderr, TTY_BRIGHT_RED("Assertion failed") ": " TTY_YELLOW(#x) "\n\tin " TTY_CYAN(__FILE__) ":" TTY_BLUE("%d") "\n", __LINE__); \
 		abort(); \
 	} \
 } while (0)
 
 #define ASSERT_MSG(x, fmt, ...) do { \
 	if (!(x)) { \
-		fprintf(stderr, TTY_BRIGHT_RED("Assertion failed") ": " TTY_YELLOW(fmt) " (" TTY_CYAN("%s") ":" TTY_BLUE("%d") ")\n", ##__VA_ARGS__, __FILE__, __LINE__); \
+		fprintf(stderr, TTY_BRIGHT_RED("Assertion failed") ": " TTY_YELLOW(fmt) "\n\tin " TTY_CYAN(__FILE__) ":" TTY_BLUE("%d") "\n", ##__VA_ARGS__, __LINE__); \
 		abort(); \
 	} \
 } while (0)

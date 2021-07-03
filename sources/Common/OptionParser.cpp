@@ -10,14 +10,14 @@
 #include <cassert>
 #include <getopt.h>
 
-////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
 
 OptionParser::OptionParser()
 {
 	add_option(m_show_help, 'h', "help", "Display this message");
 }
 
-////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
 
 bool OptionParser::parse(int argc, char** argv, bool exit_on_failure)
 {
@@ -174,7 +174,7 @@ void OptionParser::print_help(std::ostream& os, const char* program_name)
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
 
 void OptionParser::add_option(Option&& option)
 {
@@ -227,7 +227,7 @@ void OptionParser::add_option(std::string& value, char short_name, const char* l
 	});
 }
 
-////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
 
 void OptionParser::add_argument(Argument&& arg)
 {
