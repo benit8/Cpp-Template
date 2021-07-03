@@ -1,0 +1,28 @@
+name: Build and test
+
+on: [push, pull_request]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Initialize
+        working-directory: ${{ github.workspace }}
+        shell: bash
+        run: ./do init
+
+      - name: Build
+        working-directory: ${{ github.workspace }}
+        shell: bash
+        run: |
+          mkdir build
+          cd build
+          cmake .. -G "Unix Makefiles"
+          make -j $(nproc)
+
+      - name: Test
+        working-directory: ${{ github.workspace }}
+        shell: bash
+        run: ./do test
