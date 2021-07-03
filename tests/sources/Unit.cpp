@@ -4,7 +4,7 @@
 ** Unit test
 */
 
-#include <criterion/criterion.h>
+#include "criterion/criterion.h"
 
 // -----------------------------------------------------------------------------
 

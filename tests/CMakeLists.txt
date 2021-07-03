@@ -32,6 +32,7 @@ PUBLIC
 	sources/Unit.cpp
 )
 
+add_subdirectory(criterion)
 target_link_libraries(${PROJECT_NAME}
 PUBLIC
 	criterion

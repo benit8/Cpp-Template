@@ -5,7 +5,8 @@ Includes:
 - CMake lists
 - Command-line option parser
 - General purpose lexing base class
-- Unit tests
+- Basic logging
+- Unit tests, with [Criterion](https://github.com/Snaipe/Criterion)
 
 ## Untemplatize the project headers
 Edit the `do` script at the root of the project and set the `project_name` variable. Then run
@@ -30,7 +31,7 @@ or
 Arguments after `run` will get passed to the binary.
 
 ## Tests
-This project includes unit tests, done with [Criterion](https://github.com/Snaipe/Criterion).
+This project includes unit tests, run them with
 ```sh
 ./do test
 ```

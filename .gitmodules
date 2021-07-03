@@ -4,3 +4,7 @@
 [submodule "extern/json"]
 	path = extern/json
 	url = https://github.com/nlohmann/json
+[submodule "tests/criterion"]
+	path = tests/criterion
+	url = https://github.com/Snaipe/Criterion
+	branch = master
